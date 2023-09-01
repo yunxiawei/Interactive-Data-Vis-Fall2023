@@ -18,3 +18,20 @@ h3 {
 p {
   font-size: 1em;
 }
+
+tr{
+  background-color: rgb(234, 160, 194);
+}
+
+th{
+  color: cyan;
+}
+
+.vegetarians {
+  background-color: darkorange;
+}
+
+#salty {
+  font-size: 85px;;
+  font-weight: 1000;
+}
