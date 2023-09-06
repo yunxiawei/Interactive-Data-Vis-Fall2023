@@ -76,7 +76,7 @@ let answer =null;
 //way 1
 function shareAnswer() {
     answer = input.value
-    window.alert(`You could be allergic to seafood: ${answer}`)
+    window.alert(`WOW~ Sounds delicious: ${answer}`)
     label.innerHTML =`You said ${answer}. Do you want to change it?`
 }
 
