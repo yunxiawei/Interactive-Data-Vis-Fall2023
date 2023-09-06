@@ -32,6 +32,9 @@ th{
 }
 
 #salty {
-  font-size: 85px;;
-  font-weight: 1000;
+  font-size: 65px;;
+  font-weight: 800;
+}
+svg {
+  background-color: rgb(178, 207, 233);
 }
