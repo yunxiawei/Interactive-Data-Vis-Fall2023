@@ -7,6 +7,9 @@ body {
 h1 {
   font-size: 3em;
 }
+h2 {
+color:coral;
+}
 
 h3 {
   font-size: 2em;
@@ -20,4 +23,11 @@ p {
 
 section {
   padding: 2em 0;
+}
+
+#yesCount{
+  color:blue
+}
+#noCount {
+  color:crimson
 }
