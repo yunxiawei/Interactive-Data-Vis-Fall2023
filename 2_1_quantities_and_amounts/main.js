@@ -82,4 +82,5 @@ bars.each(function (d) {
       .style("transform", `translate(0, ${height}px)`)
       .call(d3.axisBottom(xScale))
 
+
   });
