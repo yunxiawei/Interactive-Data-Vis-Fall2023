@@ -10,17 +10,16 @@ d3.csv("../data/MoMA_distributions.csv", d3.autoType)
     console.log(data)
 
     /* SCALES */
-const yScale = d3.scaleLinear()
-  .domain([1100, 0])
-  .range([margin.top, height - margin.bottom]);
-
-const xScale = d3.scaleLinear()
-  .domain([0, 400])
-  .range([margin.left, width - margin.right]);
-
-const xAxis = d3.axisBottom(xScale);
-const yAxis = d3.axisLeft(yScale);
-
+    const xScale = d3.scaleLinear()
+    .domain(d3.extent(data, d => d.Width))
+    .range([margin.left, width - margin.right]);
+  
+    const yScale = d3.scaleLinear()
+    .domain(d3.extent(data, d => d.Length))
+    .range([height - margin.bottom, margin.top]);
+  
+    const xAxis = d3.axisBottom(xScale);
+    const yAxis = d3.axisLeft(yScale);
 
     /* HTML ELEMENTS */
     //svg
@@ -32,20 +31,40 @@ const yAxis = d3.axisLeft(yScale);
     // axis scales
     svg.append("g")
     .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(xAxis);
+    .call(selection => selection.call(xAxis))
     
     svg.append("g")
       .attr("transform", `translate(${margin.left},0)`)
-      .call(yAxis);
+      .call(selection => selection.call(yAxis))
     
-    // circles
-  const dot = svg
-  .selectAll("circle")
-  .data(data, d => d.BioID) // second argument is the unique key for that row
-  .join("circle")
-  .attr("cx", d => xScale(d.Width))
-  .attr("cy", d => yScale(d.Length))
-  .attr("r", 2)
- // .attr("fill", d => colorScale(d.Party))
+
+    // Identify the smallest and largest data points
+    const smallestDataPoint = data.reduce((min, current) => (current.Length < min.Length ? current : min), data[0]);
+    const largestDataPoint = data.reduce((max, current) => (current.Length > max.Length ? current : max), data[0]);
+    
+    // Create labels for the smallest and largest data points
+    const labels = svg
+    .selectAll("text.label")
+    .data([smallestDataPoint, largestDataPoint]) // Create data array for only the smallest and largest data points
+    .join("text")
+    .attr("class", "label")
+    .text(d => d.Title) 
+    .attr("transform", d => `translate(${xScale(d.Width)}, ${yScale(d.Length)})`)
+    .attr("dy", -2) // Adjust labels position
+    .style("text-anchor", "below");
+
+    // Create circles for all data points
+    const dots = svg
+    .selectAll("circle.senator")
+    .data(data, d => d.ArtistLifespan)
+    .join("circle")
+    .attr("class", "senator")
+    .attr("cx", d => xScale(d.Width))
+    .attr("cy", d => yScale(d.Length))
+    .transition()
+    .duration(1000)
+    .delay((d, i) => d.Width * 100)
+    .attr("r", 2)
+    .attr("fill", "purple");
 
   });
