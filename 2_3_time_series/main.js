@@ -13,7 +13,7 @@ d3.csv('../data/Firearm_Mortality_by_State.csv', d => {
   return {
     year: new Date(+d.Year, 0, 1),
     state: d.State,
-    death: +d.Deaths
+    deaths: +d.Deaths
   }
 }).then(data => {
   console.log('data :>> ', data);
@@ -24,7 +24,7 @@ d3.csv('../data/Firearm_Mortality_by_State.csv', d => {
     .range([margin.left, width - margin.right])
 
   const yScale = d3.scaleLinear()
-    .domain([0, d3.max(data, d => d.death)]) 
+    .domain([0, d3.max(data, d => d.deaths)]) 
     .range([height - margin.bottom, margin.top])
 
   // CREATE SVG ELEMENT
@@ -59,13 +59,13 @@ d3.csv('../data/Firearm_Mortality_by_State.csv', d => {
     .attr("class", 'yLabel')
     .attr("transform", `translate(${-45}, ${height / 2})`)
     .attr("writing-mode", 'vertical-rl')
-    .text("Death")
+    .text("Deaths")
 
   // AREA GENERATOR FUNCTION
   const areaGen = d3.area()
     .x(d => xScale(d.year))
     .y0(height - margin.bottom)
-    .y1(d => yScale(d.death))
+    .y1(d => yScale(d.deaths))
 
   const groupedData = d3.groups(data, d => d.state)
 
@@ -75,7 +75,8 @@ d3.csv('../data/Firearm_Mortality_by_State.csv', d => {
     .join("path")
     .attr("class", 'area')
     .attr("fill", "lightblue")
-    .attr("opacity", 0.7)
+    .attr("opacity", 0.6)
     .attr("d", ([state, data]) => areaGen(data))
     .attr("class", ([state, data]) => state)
+
 });
