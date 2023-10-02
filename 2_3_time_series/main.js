@@ -75,7 +75,7 @@ d3.csv('../data/Firearm_Mortality_by_State.csv', d => {
     .join("path")
     .attr("class", 'area')
     .attr("fill", "lightblue")
-    .attr("opacity", 0.6)
+    .attr("opacity", 0.7)
     .attr("d", ([state, data]) => areaGen(data))
     .attr("class", ([state, data]) => state)
 });
