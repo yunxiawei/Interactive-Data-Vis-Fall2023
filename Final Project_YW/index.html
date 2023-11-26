@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>YW_Final Project</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h1>Interactive Data Visualization Final Project</h1>
+    <h2>
+      I'm visualizing diverse facets of the art world, using datasets
+      encompassing artists' nationalities, genders, and departmental
+      representation. I'm using these graphs to show the colorful mix of
+      nationalities in art, the numbers of male and female artists, and which
+      types of art are most popular. I'm doing this because I want everyone to
+      see how diverse and exciting art can be—like a colorful map showing where
+      artists are from and what they create!
+    </h2>
+    <h2>
+      Data Clean: I filtered out rows containing empty gender or nationality
+      information, retaining only the entries with filled values.
+    </h2>
+
+    <!-- Nationalities by Gender -->
+    <h2 style="color: blue">
+      1. Nationalities by Gender (Bar Chart): This visualization provides a
+      comprehensive overview of artists' nationalities distributed by gender.
+      Through a bar chart representation, it showcases the count of artists from
+      diverse nationalities categorized by gender. It presents the gender-based
+      distribution of artists across different nationalities, enabling a quick
+      understanding of the gender composition within various cultural contexts.
+    </h2>
+    <select id="nationality-filter">
+      <option value="All">All Nationalities</option>
+    </select>
+    <div id="container"></div>
+
+    <!-- Treemap by Nationalities -->
+    <h2 style="color: purple">
+      2. Treemap by Nationalities (Treemap Visualization): The treemap
+      visualization illustrates the distribution of artists' nationalities,
+      offering the flexibility to filter by gender. It presents a hierarchical
+      display where the sizes of the rectangles indicate the count of artists,
+      grouped by nationality. It aims to provide an interactive exploration of
+      artists' nationalities, allowing users to analyze the gender distribution
+      within each nationality category and gain insights into the proportional
+      representation of different nationalities.
+    </h2>
+    <select id="gender-filter">
+      <option value="All">All Genders</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Non-Binary">Non-Binary</option>
+    </select>
+    <div id="container2"></div>
+
+    <!-- Artworks by Department -->
+    <h2 style="color: orange">
+      3. Artworks by Department (Bar Chart): This bar chart visualization offers
+      a comparative view of artworks across various departments. It highlights
+      the count of artworks within each department, emphasizing the most and
+      least represented departments through color differentiation. This
+      visualization facilitates a quick assessment of the artistic concentration
+      within different departments, drawing attention to the spectrum of
+      representation among diverse art categories, with the Highlight most
+      represented department with green and highlighted least represented
+      department with red.
+    </h2>
+    <div id="container1"></div>
+
+    <script src="../lib/d3.js"></script>
+    <script src="main.js"></script>
+
+    <!-- Data Source -->
+    <h6>Data Source: https://github.com/MuseumofModernArt/collection</h6>
+  </body>
+</html>
